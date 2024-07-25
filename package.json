@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node index.ts",
-    "dev": "npx tsx index.ts",
+    "dev": "npx tsx index.ts --trace-warnings",
     "format": "prettier --write \"./**/*.{ts,tsx}\""
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "@grammyjs/conversations": "^1.2.0",
     "@grammyjs/files": "^1.1.1",
     "@grammyjs/menu": "^1.2.2",
+    "@grammyjs/runner": "^2.0.3",
     "aws-sdk": "^2.1659.0",
     "grammy": "^1.27.0",
     "nanoid": "4",

@@ -40,6 +40,13 @@
   resolved "https://registry.yarnpkg.com/@grammyjs/menu/-/menu-1.2.2.tgz#ecd6ce1a6439c90c30aea31d7d5e10a8f2e90593"
   integrity sha512-qrlGn9KFoy9ivVkC4wQnuCpgWc59VzDdj7r7szt432UnddKPk8NZDwVE1HDiaNnuyDV0K58OCp165dXrijmLWw==
 
+"@grammyjs/runner@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@grammyjs/runner/-/runner-2.0.3.tgz#cfb08958fd563ce1e0eda5754a40b3d632c4eaa1"
+  integrity sha512-nckmTs1dPWfVQteK9cxqxzE+0m1VRvluLWB8UgFzsjg62w3qthPJt0TYtJBEdG7OedvfQq4vnFAyE6iaMkR42A==
+  dependencies:
+    abort-controller "^3.0.0"
+
 "@grammyjs/types@3.11.0":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@grammyjs/types/-/types-3.11.0.tgz#d134ebdf765025109feb2aedec13d90a10712f8a"
