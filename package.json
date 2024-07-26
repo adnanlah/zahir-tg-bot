@@ -5,8 +5,9 @@
   "author": "Adnan Lahrech",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts",
-    "dev": "npx tsx index.ts --trace-warnings",
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "npx tsx watch src/index.ts",
     "format": "prettier --write \"./**/*.{ts,tsx}\""
   },
   "devDependencies": {

@@ -14,6 +14,8 @@ type Res<T> = {
   };
 };
 
+type TRPCResponse<T> = Res<T> | { error: TRPCError };
+
 type VerificationInstanceDateType = {
   sid: string;
   service_sid: string;
@@ -42,13 +44,34 @@ type CheckCodeDataType = {
 };
 
 export type VerificationInstanceResponse =
-  | Res<VerificationInstanceDateType>
-  | {
-      error: TRPCError;
-    };
+  TRPCResponse<VerificationInstanceDateType>;
 
-export type CheckCodeResponse =
-  | Res<CheckCodeDataType>
-  | {
-      error: TRPCError;
+export type CheckCodeResponse = TRPCResponse<CheckCodeDataType>;
+
+export type AddImagesInput = {
+  images: { filename: string; sha256: string }[];
+  telegramId: string;
+};
+export type CheckIfVerifiedInput = {
+  telegramId: number;
+  phoneNumber: string;
+};
+
+export type CheckIfVerifiedResponse = {
+  result: {
+    data: {
+      status: "verified" | "not_verified";
     };
+  };
+};
+export type CheckPointsRemainingInput = {
+  telegramId: number;
+};
+
+export type CheckPointsRemainingResponse = {
+  result: {
+    data: {
+      pointsRemaining: number;
+    };
+  };
+};
