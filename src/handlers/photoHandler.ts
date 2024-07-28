@@ -8,9 +8,12 @@ import { MyContext } from "..";
 
 export const photoHandler = async (ctx: MyContext) => {
   try {
+    const telegramId = (await ctx.getAuthor()).user.id;
     const file = await ctx.getFile();
     const path = await file.download();
     const blob = readFileSync(path);
+
+    ctx.reply("Uploading...");
 
     const uploadedImage = await s3
       .upload({
@@ -20,15 +23,30 @@ export const photoHandler = async (ctx: MyContext) => {
       })
       .promise();
 
-    await addImages({
+    ctx.reply("Uploaded!");
+    ctx.reply("Adding images to your account...");
+
+    const res = await addImages({
       images: [
         {
           filename: uploadedImage.Key,
           sha256: calculateSHA256(blob),
         },
       ],
-      telegramId: `QWE`,
+      telegramId,
     });
+
+    if (!res) {
+      ctx.reply("Error in addImages");
+      return;
+    }
+
+    if ("error" in res) {
+      console.log(`Error in addImages: `, res.error.message);
+      return;
+    }
+
+    ctx.reply("Done!");
 
     console.log(
       "File uploaded successfully ",

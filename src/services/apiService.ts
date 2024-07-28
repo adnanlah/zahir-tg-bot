@@ -1,5 +1,6 @@
 import {
   AddImagesInput,
+  AddImagesResponse,
   CheckIfVerifiedInput,
   CheckIfVerifiedResponse,
   CheckPointsRemainingInput,
@@ -16,14 +17,15 @@ export const addImages = async (input: AddImagesInput) => {
         body: JSON.stringify(input),
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${jwtToken}`,
+          "x-access-key": ENV.ZAHIR_ACCESS_KEY_ID,
+          "x-secret-key": ENV.ZAHIR_SECRET_ACCESS_KEY,
         },
       },
     );
 
     if (res.ok) {
       const json = await res.json();
-      return json;
+      return json as AddImagesResponse;
     }
 
     throw new Error("Network request failed");

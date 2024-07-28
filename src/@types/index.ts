@@ -50,8 +50,11 @@ export type CheckCodeResponse = TRPCResponse<CheckCodeDataType>;
 
 export type AddImagesInput = {
   images: { filename: string; sha256: string }[];
-  telegramId: string;
+  telegramId: number;
 };
+
+export type AddImagesResponse = TRPCResponse<void>;
+
 export type CheckIfVerifiedInput = {
   telegramId: number;
   phoneNumber: string;
@@ -64,6 +67,7 @@ export type CheckIfVerifiedResponse = {
     };
   };
 };
+
 export type CheckPointsRemainingInput = {
   telegramId: number;
 };
