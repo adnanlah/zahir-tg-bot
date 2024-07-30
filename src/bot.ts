@@ -1,12 +1,4 @@
-import {
-  Api,
-  Bot,
-  Context,
-  GrammyError,
-  HttpError,
-  session,
-  SessionFlavor,
-} from "grammy";
+import { Api, Bot, Context, session, SessionFlavor } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
 import { ENV } from "./utils/env";
