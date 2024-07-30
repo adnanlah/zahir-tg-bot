@@ -1,22 +1,6 @@
-type TRPCError = {
-  code: number;
-  message: string;
-  data: {
-    code: string;
-    httpStatus: number;
-    stack: string;
-  };
-};
+import { TRPCResponse } from "./trpcTypes";
 
-type Res<T> = {
-  result: {
-    data: T;
-  };
-};
-
-type TRPCResponse<T> = Res<T> | { error: TRPCError };
-
-type VerificationInstanceDateType = {
+export type VerificationInstanceResponse = TRPCResponse<{
   sid: string;
   service_sid: string;
   account_sid: string;
@@ -30,9 +14,9 @@ type VerificationInstanceDateType = {
   payee: any;
   sna: any;
   url: string;
-};
+}>;
 
-type CheckCodeDataType = {
+export type CheckCodeResponse = TRPCResponse<{
   status:
     | "pending"
     | "approved"
@@ -41,12 +25,7 @@ type CheckCodeDataType = {
     | "deleted"
     | "failed"
     | "expired";
-};
-
-export type VerificationInstanceResponse =
-  TRPCResponse<VerificationInstanceDateType>;
-
-export type CheckCodeResponse = TRPCResponse<CheckCodeDataType>;
+}>;
 
 export type AddImagesInput = {
   images: { filename: string; sha256: string }[];
@@ -60,22 +39,22 @@ export type CheckIfVerifiedInput = {
   phoneNumber: string;
 };
 
-export type CheckIfVerifiedResponse = {
-  result: {
-    data: {
-      status: "verified" | "not_verified";
-    };
-  };
+export type CheckIfVerifiedResponse = TRPCResponse<{
+  status: "verified" | "not_verified";
+}>;
+
+export type CheckIfTgBoundInput = {
+  telegramId: number;
 };
+
+export type CheckIfTgBoundResponse = TRPCResponse<{
+  status: "bound" | "not_bound";
+}>;
 
 export type CheckPointsRemainingInput = {
   telegramId: number;
 };
 
-export type CheckPointsRemainingResponse = {
-  result: {
-    data: {
-      pointsRemaining: number;
-    };
-  };
-};
+export type CheckPointsRemainingResponse = TRPCResponse<{
+  pointsRemaining: number;
+}>;

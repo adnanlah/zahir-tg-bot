@@ -1,6 +1,10 @@
 import { readFileSync } from "fs";
 import { nano } from "../utils/lib";
-import { addImages } from "../services/apiService";
+import {
+  addImages,
+  checkIfTgBound,
+  checkIfVerified,
+} from "../services/apiService";
 import { calculateSHA256 } from "../utils/helpers";
 import { s3 } from "../services/s3Service";
 import { ENV } from "../utils/env";
@@ -9,6 +13,26 @@ import { MyContext } from "..";
 export const photoHandler = async (ctx: MyContext) => {
   try {
     const telegramId = (await ctx.getAuthor()).user.id;
+
+    try {
+      const isBound = await checkIfTgBound({
+        telegramId,
+      });
+
+      if ("error" in isBound) {
+        ctx.reply("Error checking if your Telegram account is bound!");
+        return;
+      }
+
+      if (isBound.result.data.status === "not_bound") {
+        ctx.reply("Your Telegram account is not bound to your Zahir account!");
+        return;
+      }
+    } catch (err: any) {
+      console.log(`Networkd eror in checkIfTgBound: `, err.message);
+      return;
+    }
+
     const file = await ctx.getFile();
     const path = await file.download();
     const blob = readFileSync(path);
@@ -26,33 +50,32 @@ export const photoHandler = async (ctx: MyContext) => {
     ctx.reply("Uploaded!");
     ctx.reply("Adding images to your account...");
 
-    const res = await addImages({
-      images: [
-        {
-          filename: uploadedImage.Key,
-          sha256: calculateSHA256(blob),
-        },
-      ],
-      telegramId,
-    });
+    try {
+      const res = await addImages({
+        images: [
+          {
+            filename: uploadedImage.Key,
+            sha256: calculateSHA256(blob),
+          },
+        ],
+        telegramId,
+      });
 
-    if (!res) {
-      ctx.reply("Error in addImages");
-      return;
-    }
+      if (!res) {
+        ctx.reply("Error trying to add images to your account!");
+        return;
+      }
 
-    if ("error" in res) {
-      console.log(`Error in addImages: `, res.error.message);
+      if ("error" in res) {
+        console.log(`Error in addImages: `, res.error.message);
+        return;
+      }
+    } catch (err: any) {
+      console.log(`Networkd eror in addImages: `, err.message);
       return;
     }
 
     ctx.reply("Done!");
-
-    console.log(
-      "File uploaded successfully ",
-      uploadedImage.Location,
-      uploadedImage.Key,
-    );
   } catch (error: any) {
     console.log(`global error: `, error.message);
   }

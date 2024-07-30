@@ -40,6 +40,11 @@ export async function verifyByPhoneNumber(
       }),
     );
 
+    if ("error" in res) {
+      console.log(`Error in checkIfVerified: `, res.error.message);
+      return;
+    }
+
     if (res?.result.data.status === "verified") {
       await ctx.reply("حساب التلغرام الخاص بك مرتبط بالفعل بخدماتنا.");
       return;
