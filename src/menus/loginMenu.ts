@@ -1,4 +1,4 @@
-import { MyContext } from "..";
+import { MyContext } from "../bot";
 import { Menu } from "@grammyjs/menu";
 
 export const loginMenu = new Menu<MyContext>("my-menu-identifier")

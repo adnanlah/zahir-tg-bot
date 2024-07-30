@@ -1,7 +1,7 @@
 import { CheckCodeResponse, VerificationInstanceResponse } from "../@types";
 import { checkIfVerified } from "../services/apiService";
 import { ENV } from "../utils/env";
-import { MyContext, MyConversation } from "..";
+import { MyContext, MyConversation } from "../bot";
 
 export async function verifyByPhoneNumber(
   conversation: MyConversation,

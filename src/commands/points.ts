@@ -1,4 +1,4 @@
-import { MyContext } from "..";
+import { MyContext } from "../bot";
 import { checkPointsRemaining } from "../services/apiService";
 
 export const pointsCommand = async (ctx: MyContext) => {

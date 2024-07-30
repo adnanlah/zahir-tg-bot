@@ -1,4 +1,4 @@
-import { MyContext } from "..";
+import { MyContext } from "../bot";
 import { loginMenu } from "../menus/loginMenu";
 
 export const loginCommand = async (ctx: MyContext) => {

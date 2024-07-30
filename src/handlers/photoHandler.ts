@@ -8,7 +8,7 @@ import {
 import { calculateSHA256 } from "../utils/helpers";
 import { s3 } from "../services/s3Service";
 import { ENV } from "../utils/env";
-import { MyContext } from "..";
+import { MyContext } from "../bot";
 
 export const photoHandler = async (ctx: MyContext) => {
   try {

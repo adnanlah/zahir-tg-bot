@@ -11,6 +11,8 @@ const envSchema = z.object({
   ZAHIR_INSIGHT_URL: z.string(),
   ZAHIR_ACCESS_KEY_ID: z.string(),
   ZAHIR_SECRET_ACCESS_KEY: z.string(),
+  MONGODB_URL: z.string(),
+  DB_NAME: z.string(),
 });
 
 export const ENV = envSchema.parse(process.env);

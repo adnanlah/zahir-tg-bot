@@ -1,4 +1,4 @@
-import { MyContext } from "..";
+import { MyContext } from "../bot";
 import { keyboard } from "../menus/keyboard";
 
 export const startCommand = async (ctx: MyContext) => {
