@@ -2,9 +2,19 @@ import { MyContext } from "../bot";
 import { checkPointsRemaining } from "../services/apiService";
 
 export const pointsCommand = async (ctx: MyContext) => {
-  const points = await checkPointsRemaining({
-    telegramId: (await ctx.getAuthor()).user.id,
-  });
+  try {
+    const points = await checkPointsRemaining({
+      telegramId: (await ctx.getAuthor()).user.id,
+    });
 
-  await ctx.reply(`Remaining points: ${points.result.data.pointsRemaining}`);
+    if ("error" in points) {
+      await ctx.reply(`Error: ` + points.error.message);
+      return;
+    }
+
+    await ctx.reply(`النقاط المتبقية: ${points.result.data.pointsRemaining}`);
+  } catch (err: any) {
+    await ctx.reply(`Error: `);
+    throw err;
+  }
 };
