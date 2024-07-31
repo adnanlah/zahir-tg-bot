@@ -1,12 +1,16 @@
 import {
   AddImagesInput,
   AddImagesResponse,
+  CheckCodeResponse,
   CheckIfTgBoundInput,
   CheckIfTgBoundResponse,
   CheckIfVerifiedInput,
   CheckIfVerifiedResponse,
   CheckPointsRemainingInput,
   CheckPointsRemainingResponse,
+  CheckVerificationCodeInput,
+  VerificationInstanceResponse,
+  VerifyPhoneNumberInput,
 } from "../@types";
 import { ENV } from "../utils/env";
 import { NetworkError } from "../utils/NetworkError";
@@ -38,10 +42,60 @@ export const addImages = async (input: AddImagesInput) => {
   }
 };
 
+export const verifyPhoneNumber = async (input: VerifyPhoneNumberInput) => {
+  try {
+    const res = await fetch(
+      `http://${ENV.ZAHIR_INSIGHT_URL}/trpc/auth.verifyPhoneNumber`,
+      {
+        method: "POST",
+        body: JSON.stringify(input),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (res.ok) {
+      const json = await res.json();
+      return json as VerificationInstanceResponse;
+    }
+
+    throw new Error("Network request failed");
+  } catch (err: any) {
+    console.log(`Server Error while adding images: `, err.message);
+    throw err;
+  }
+};
+
+export const checkVerificationCode = async (
+  input: CheckVerificationCodeInput,
+) => {
+  try {
+    const res = await fetch(
+      `http://${ENV.ZAHIR_INSIGHT_URL}/trpc/auth.checkVerificationCode`,
+      {
+        method: "POST",
+        body: JSON.stringify(input),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (res.ok) {
+      const json = await res.json();
+      return json as CheckCodeResponse;
+    }
+
+    throw new Error("Network request failed");
+  } catch (err: any) {
+    console.log(`Server Error while adding images: `, err.message);
+    throw err;
+  }
+};
+
 export const checkIfVerified = async (input: CheckIfVerifiedInput) => {
   try {
-    // throw new NetworkError("Network request failed", 203, { a: 1 });
-
     const res = await fetch(
       `http://${ENV.ZAHIR_INSIGHT_URL}/trpc/settings.checkIfVerified`,
       {

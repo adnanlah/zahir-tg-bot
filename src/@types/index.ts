@@ -1,5 +1,10 @@
 import { TRPCResponse } from "./trpcTypes";
 
+export type VerifyPhoneNumberInput = {
+  telegramId: number;
+  phoneNumber: string;
+};
+
 export type VerificationInstanceResponse = TRPCResponse<{
   sid: string;
   service_sid: string;
@@ -15,6 +20,12 @@ export type VerificationInstanceResponse = TRPCResponse<{
   sna: any;
   url: string;
 }>;
+
+export type CheckVerificationCodeInput = {
+  telegramId: number;
+  phoneNumber: string;
+  code: string;
+};
 
 export type CheckCodeResponse = TRPCResponse<{
   status:
