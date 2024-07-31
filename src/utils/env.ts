@@ -1,6 +1,6 @@
-import { z } from "zod";
-import dotenv from "dotenv";
-dotenv.config();
+import { z } from 'zod'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const envSchema = z.object({
   BOT_TOKEN: z.string(),
@@ -13,6 +13,6 @@ const envSchema = z.object({
   ZAHIR_SECRET_ACCESS_KEY: z.string(),
   MONGODB_URL: z.string(),
   DB_NAME: z.string(),
-});
+})
 
-export const ENV = envSchema.parse(process.env);
+export const ENV = envSchema.parse(process.env)

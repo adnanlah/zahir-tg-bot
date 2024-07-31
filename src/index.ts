@@ -1,5 +1,5 @@
-import { bot } from "./bot";
-import { initORM } from "./config/db";
+import { bot } from './bot'
+import { initORM } from './config/db'
 
-initORM();
-bot.start();
+initORM()
+bot.start()

@@ -1,3 +1,3 @@
-import { customAlphabet } from "nanoid";
+import { customAlphabet } from 'nanoid'
 
-export const nano = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 20);
+export const nano = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 20)

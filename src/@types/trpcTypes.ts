@@ -1,17 +1,17 @@
 export type TRPCError = {
-  code: number;
-  message: string;
+  code: number
+  message: string
   data: {
-    code: string;
-    httpStatus: number;
-    stack: string;
-  };
-};
+    code: string
+    httpStatus: number
+    stack: string
+  }
+}
 
 export type Res<T> = {
   result: {
-    data: T;
-  };
-};
+    data: T
+  }
+}
 
-export type TRPCResponse<T> = Res<T> | { error: TRPCError };
+export type TRPCResponse<T> = Res<T> | { error: TRPCError }

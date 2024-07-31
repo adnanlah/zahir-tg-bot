@@ -30,7 +30,7 @@ export async function verifyByPhoneNumber(conversation: MyConversation, ctx: MyC
       const res = await conversation.external(async () => {
         return await checkIfVerified({
           telegramId: Number(telegramId),
-          phoneNumber
+          phoneNumber,
         })
       })
 
@@ -52,20 +52,20 @@ export async function verifyByPhoneNumber(conversation: MyConversation, ctx: MyC
       const verifyResponse = await conversation.external(async () => {
         return await verifyPhoneNumber({
           telegramId,
-          phoneNumber
+          phoneNumber,
         })
       })
 
       if ('error' in verifyResponse) {
         await ctx.reply(
-          `مشكلة في التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى لاحقاً! ${verifyResponse.error.message}`
+          `مشكلة في التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى لاحقاً! ${verifyResponse.error.message}`,
         )
         return
       }
     } catch (err: any) {
       await ctx.reply(
         `مشكلة في التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى لاحقاً!: `,
-        err.message
+        err.message,
       )
       return
     }
@@ -92,21 +92,21 @@ export async function verifyByPhoneNumber(conversation: MyConversation, ctx: MyC
         return await checkVerificationCode({
           telegramId,
           phoneNumber,
-          code: ctx.session.code
+          code: ctx.session.code,
         })
       })
 
       if ('error' in checkCodeResponse) {
         await ctx.reply(
-          `مشكلة في التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى لاحقاً! ${checkCodeResponse.error.message}`
+          `مشكلة في التحقق من رقم الهاتف، يرجى المحاولة مرة أخرى لاحقاً! ${checkCodeResponse.error.message}`,
         )
         return
       }
 
       const {
         result: {
-          data: { status }
-        }
+          data: { status },
+        },
       } = checkCodeResponse
 
       if (status === 'approved') {
