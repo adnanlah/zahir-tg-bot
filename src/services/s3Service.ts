@@ -1,4 +1,5 @@
 import { S3 } from 'aws-sdk'
+
 import { ENV } from '../utils/env'
 
 export const s3 = new S3({

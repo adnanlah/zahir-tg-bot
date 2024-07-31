@@ -1,10 +1,11 @@
 import { readFileSync } from 'fs'
-import { nano } from '../utils/lib'
-import { addImages, checkIfTgBound, checkIfVerified } from '../services/apiService'
-import { calculateSHA256 } from '../utils/helpers'
+
+import { MyContext } from '../bot'
+import { addImages, checkIfTgBound } from '../services/apiService'
 import { s3 } from '../services/s3Service'
 import { ENV } from '../utils/env'
-import { MyContext } from '../bot'
+import { calculateSHA256 } from '../utils/helpers'
+import { nano } from '../utils/lib'
 
 export const photoHandler = async (ctx: MyContext) => {
   try {

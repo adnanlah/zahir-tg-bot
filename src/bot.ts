@@ -1,20 +1,20 @@
-import { Api, Bot, Context, session, SessionFlavor } from 'grammy'
-import { FileApiFlavor, FileFlavor, hydrateFiles } from '@grammyjs/files'
-
-import { ENV } from './utils/env'
 import {
   type Conversation,
   type ConversationFlavor,
   conversations,
   createConversation,
 } from '@grammyjs/conversations'
-import { loginMenu } from './menus/loginMenu'
-import { photoHandler } from './handlers/photoHandler'
-import { verifyByPhoneNumber } from './conversations/verifyByPhoneNumberConversation'
+import { FileApiFlavor, FileFlavor, hydrateFiles } from '@grammyjs/files'
+import { Api, Bot, Context, SessionFlavor, session } from 'grammy'
+
 import { loginCommand } from './commands/login'
-import { startCommand } from './commands/start'
 import { pointsCommand } from './commands/points'
+import { startCommand } from './commands/start'
+import { verifyByPhoneNumber } from './conversations/verifyByPhoneNumberConversation'
 import { errorHandler } from './handlers/errorHandler'
+import { photoHandler } from './handlers/photoHandler'
+import { loginMenu } from './menus/loginMenu'
+import { ENV } from './utils/env'
 
 export type SessionData = {
   phoneNumber: string

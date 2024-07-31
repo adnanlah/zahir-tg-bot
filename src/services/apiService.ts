@@ -12,8 +12,8 @@ import {
   VerificationInstanceResponse,
   VerifyPhoneNumberInput,
 } from '../@types'
-import { ENV } from '../utils/env'
 import { NetworkError } from '../utils/NetworkError'
+import { ENV } from '../utils/env'
 
 export const addImages = async (input: AddImagesInput) => {
   try {

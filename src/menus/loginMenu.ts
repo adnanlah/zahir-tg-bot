@@ -1,5 +1,6 @@
-import { MyContext } from '../bot'
 import { Menu } from '@grammyjs/menu'
+
+import { MyContext } from '../bot'
 
 export const loginMenu = new Menu<MyContext>('my-menu-identifier')
   .text('E-Mail', (ctx) => {

@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Entity, Property } from '@mikro-orm/core'
+
 import { CustomBaseEntity } from './CustomBase'
 
 @Entity()

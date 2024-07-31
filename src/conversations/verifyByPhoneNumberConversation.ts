@@ -1,5 +1,5 @@
-import { checkIfVerified, checkVerificationCode, verifyPhoneNumber } from '../services/apiService'
 import { MyContext, MyConversation } from '../bot'
+import { checkIfVerified, checkVerificationCode, verifyPhoneNumber } from '../services/apiService'
 
 export async function verifyByPhoneNumber(conversation: MyConversation, ctx: MyContext) {
   try {
